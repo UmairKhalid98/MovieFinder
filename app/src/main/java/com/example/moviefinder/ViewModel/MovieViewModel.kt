@@ -1,5 +1,6 @@
 package com.example.moviefinder.ViewModel
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviefinder.Model.Movie

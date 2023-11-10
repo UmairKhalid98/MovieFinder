@@ -1,14 +1,17 @@
 package com.example.moviefinder.View
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviefinder.Model.Movie
 import com.example.moviefinder.R
+import com.example.moviefinder.databinding.MovieListItemBinding
 
 /**
  * RecyclerView Adapter for displaying a list of movies.
@@ -23,6 +26,8 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
      * @param movieView The view representing a movie item.
      */
     class MovieViewHolder(movieView: View) : RecyclerView.ViewHolder(movieView){
+
+        val movieItemCardView: CardView = movieView.findViewById(R.id.movieItemCardView)
         val imagePoster: ImageView = movieView.findViewById(R.id.imagePoster)
         val movieTitle: TextView = movieView.findViewById(R.id.movieTitle)
         val popularity: TextView = movieView.findViewById(R.id.popularity)
@@ -62,6 +67,8 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
 
         // Get the movie at the specified position
         val movie = movies[position]
+        val posterUrl:String = baseUrl+movie.posterPath
+        val backdropUrl:String = baseUrl+movie.backdropPath
 
         // Load and display the movie poster using Glide library
         holder.imagePoster.let {
@@ -71,6 +78,19 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
         holder.movieTitle.text = movie.title
         holder.popularity.text = "Popularity ${movie.popularity}"
         holder.releaseDate.text = "Released ${movie.releaseDate}"
+
+
+        holder.movieItemCardView.setOnClickListener{
+            val intent = Intent(it.context,DetailsActivity::class.java )
+            intent.putExtra("title",movie.title);
+            intent.putExtra("popularity",movie.popularity);
+            intent.putExtra("releaseDate",movie.releaseDate);
+            intent.putExtra("posterPath",posterUrl);
+            intent.putExtra("backdropPath",backdropUrl);
+            intent.putExtra("overview",movie.overview);
+            intent.putExtra("id",movie.id);
+            it.context.startActivity(intent);
+        }
 
     }
 

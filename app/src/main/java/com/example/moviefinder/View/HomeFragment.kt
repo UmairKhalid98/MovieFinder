@@ -1,6 +1,8 @@
 package com.example.moviefinder.View
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,7 @@ import com.example.moviefinder.Model.MovieRepository
 import com.example.moviefinder.R
 import com.example.moviefinder.ViewModel.MovieViewModel
 import com.example.moviefinder.ViewModel.MovieViewModelFactory
+import com.example.moviefinder.databinding.FragmentHomeBinding
 
 /**
  * HomeFragment displays a list of movies on the home screen using a RecyclerView.
@@ -19,6 +22,7 @@ import com.example.moviefinder.ViewModel.MovieViewModelFactory
  */
 class HomeFragment : Fragment() {
 
+    private lateinit var binding: FragmentHomeBinding
     // ViewModel and Adapter instances
     private lateinit var viewModel: MovieViewModel
     private lateinit var adapter: MovieAdapter
@@ -41,7 +45,8 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater,container,false )
+        return binding.root
     }
 
     /**
@@ -71,5 +76,7 @@ class HomeFragment : Fragment() {
             adapter = MovieAdapter(movies)
             recyclerView.adapter = adapter
         }
+
     }
+
 }

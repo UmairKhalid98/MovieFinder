@@ -39,6 +39,8 @@
 
         <!-- CardView to hold RecyclerView -->
         <androidx.cardview.widget.CardView
+            android:background="@color/purple_500"
+            android:id="@+id/movieCardHolder"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="5dp"

@@ -32,6 +32,7 @@ class MovieRepository(private val context: Context) {
             val results = data["results"] as List<Map<String, Any>>
             val movies = results.map { Movie (
                 it["id"] as? Int ?: 0,
+                it["backdrop_path"] as? String?:"",
                 it["title"] as? String?:"",
                 it["overview"] as? String?:"",
                 it["poster_path"] as? String?:"",
