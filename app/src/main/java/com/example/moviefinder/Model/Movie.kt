@@ -14,11 +14,12 @@ import com.google.gson.annotations.SerializedName
  * @constructor Creates a new instance of the Movie data class.
  */
 data class Movie(
-      @SerializedName("id") val id: Int?,
-      @SerializedName("backdrop_path") val backdropPath: String,
-      @SerializedName("title") val title: String?,
-      @SerializedName("overview") val overview: String?,
-      @SerializedName("poster_path") val posterPath: String?,
-      @SerializedName("popularity") val popularity: Int?,
-      @SerializedName("release_date") val releaseDate: String?
+
+      val id: Int,
+      val name: String,
+      val first_air_date: String,
+      val popularity: Double,
+      val backdrop_path: String,
+      val poster_path: String,
+      val overview: String
 )

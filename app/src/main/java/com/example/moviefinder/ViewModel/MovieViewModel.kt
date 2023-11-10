@@ -2,6 +2,7 @@ package com.example.moviefinder.ViewModel
 
 import android.content.Intent
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviefinder.Model.Movie
 import com.example.moviefinder.Model.MovieRepository
@@ -17,5 +18,5 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     /**
      * LiveData representing the list of movies retrieved from the repository.
      */
-    val movieList: LiveData<List<Movie>> = repository.getMovieList()
+    val movieList: MutableLiveData<List<Movie>?> = repository.getAPIMovies()
 }

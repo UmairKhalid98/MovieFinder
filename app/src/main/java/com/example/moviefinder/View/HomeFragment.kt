@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -70,10 +71,16 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
 
 
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
+        progressBar.visibility = View.VISIBLE
         // Observing changes in the movieList LiveData from the ViewModel
         viewModel.movieList.observe(viewLifecycleOwner) { movies ->
+            if (movies != null) {
+                Log.d("Umair", "HomeFragmentData:"+ movies.size)
+                progressBar.visibility = View.GONE
+            }
             // Updating the adapter with the latest list of movies
-            adapter = MovieAdapter(movies)
+            adapter = movies?.let { MovieAdapter(it) }!!
             recyclerView.adapter = adapter
         }
 

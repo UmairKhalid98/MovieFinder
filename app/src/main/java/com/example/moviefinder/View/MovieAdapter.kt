@@ -67,24 +67,24 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
 
         // Get the movie at the specified position
         val movie = movies[position]
-        val posterUrl:String = baseUrl+movie.posterPath
-        val backdropUrl:String = baseUrl+movie.backdropPath
+        val posterUrl:String = baseUrl+movie.poster_path
+        val backdropUrl:String = baseUrl+movie.backdrop_path
 
         // Load and display the movie poster using Glide library
         holder.imagePoster.let {
-            Glide.with(it.context).load(baseUrl+movie.posterPath).override(200, 300).into(it)
+            Glide.with(it.context).load(posterUrl).override(200, 300).into(it)
         }
         // Set movie title, popularity and release dates
-        holder.movieTitle.text = movie.title
+        holder.movieTitle.text = movie.name
         holder.popularity.text = "Popularity ${movie.popularity}"
-        holder.releaseDate.text = "Released ${movie.releaseDate}"
+        holder.releaseDate.text = "Released ${movie.first_air_date}"
 
 
         holder.movieItemCardView.setOnClickListener{
             val intent = Intent(it.context,DetailsActivity::class.java )
-            intent.putExtra("title",movie.title);
+            intent.putExtra("title",movie.name);
             intent.putExtra("popularity",movie.popularity);
-            intent.putExtra("releaseDate",movie.releaseDate);
+            intent.putExtra("releaseDate",movie.first_air_date);
             intent.putExtra("posterPath",posterUrl);
             intent.putExtra("backdropPath",backdropUrl);
             intent.putExtra("overview",movie.overview);

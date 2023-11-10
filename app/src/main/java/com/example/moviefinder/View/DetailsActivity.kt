@@ -24,7 +24,8 @@ class DetailsActivity : AppCompatActivity() {
         Glide.with(applicationContext).load(backdropPath).into(binding.backgroundImg)
         binding.movieOverview.text = overview
         binding.movieTitle.text = title
-        binding.detailReleaseYear.text = releaseDate
+        binding.detailReleaseYear.text = releaseDate;
+        binding.detailPopularity.text = popularity
         binding.collapsingBar.title = title
         binding.collapsingBar.setExpandedTitleColor(resources.getColor(R.color.white))
         binding.collapsingBar.setCollapsedTitleTextColor(resources.getColor(R.color.white))
