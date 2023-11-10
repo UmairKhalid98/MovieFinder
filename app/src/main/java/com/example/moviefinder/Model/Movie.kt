@@ -21,5 +21,6 @@ data class Movie(
       val popularity: Double,
       val backdrop_path: String,
       val poster_path: String,
-      val overview: String
+      val overview: String,
+      val genre_ids: List<Int>
 )

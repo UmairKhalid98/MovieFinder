@@ -95,7 +95,7 @@
                     android:id="@+id/detailPopularity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="130"
+                    android:text="491.345"
                     android:textColor="@color/black"
                     android:paddingBottom="10dp"
                     android:textStyle="bold"

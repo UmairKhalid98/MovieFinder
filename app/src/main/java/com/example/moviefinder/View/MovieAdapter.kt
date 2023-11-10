@@ -11,15 +11,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviefinder.Model.Movie
 import com.example.moviefinder.R
-import com.example.moviefinder.databinding.MovieListItemBinding
+
 
 /**
  * RecyclerView Adapter for displaying a list of movies.
  *
  * @param movies The list of movies to be displayed.
  */
-class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val movies: List<Movie>, private val getMovieGenres: (Movie) -> String) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
+    private var genreMap: Map<Int, String>? = null
+    fun setGenreMap(genreMap: Map<Int, String>) {
+        this.genreMap = genreMap
+        notifyDataSetChanged()
+    }
     /**
      * ViewHolder innerclass for displaying movie items.
      *
@@ -32,6 +37,7 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
         val movieTitle: TextView = movieView.findViewById(R.id.movieTitle)
         val popularity: TextView = movieView.findViewById(R.id.popularity)
         val releaseDate: TextView = movieView.findViewById(R.id.releaseDate)
+        val genreIds:TextView = movieView.findViewById(R.id.genre)
     }
 
     /**
@@ -65,6 +71,7 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
         // Base URL for movie poster images
         val baseUrl:String = "https://image.tmdb.org/t/p/original"
 
+
         // Get the movie at the specified position
         val movie = movies[position]
         val posterUrl:String = baseUrl+movie.poster_path
@@ -78,6 +85,7 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
         holder.movieTitle.text = movie.name
         holder.popularity.text = "Popularity ${movie.popularity}"
         holder.releaseDate.text = "Released ${movie.first_air_date}"
+        holder.genreIds.text = getMovieGenres(movie)
 
 
         holder.movieItemCardView.setOnClickListener{
@@ -89,6 +97,7 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
             intent.putExtra("backdropPath",backdropUrl);
             intent.putExtra("overview",movie.overview);
             intent.putExtra("id",movie.id);
+            intent.putExtra("Genre", getMovieGenres(movie))
             it.context.startActivity(intent);
         }
 

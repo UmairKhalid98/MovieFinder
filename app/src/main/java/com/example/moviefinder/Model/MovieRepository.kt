@@ -20,6 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @constructor Creates a new instance of the MovieRepository class.
  */
 class MovieRepository(private val context: Context) {
+
+    val genreMap = mutableMapOf<Int, String>()
+
+
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -74,6 +78,30 @@ class MovieRepository(private val context: Context) {
 
         return data
     }
+
+    private val genreService = retrofit.create(GenreService::class.java)
+    fun fetchGenres() {
+        Log.d("Genres", "Fetching genres")
+        genreService.getGenres().enqueue(object : Callback<GenreDBResponse> {
+            override fun onResponse(call: Call<GenreDBResponse>, response: Response<GenreDBResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("Genres", "Succesfully Got genres")
+                    response.body()?.genres?.forEach { genre ->
+                        Log.d("Genres", "genreId:" + genre.id)
+                        genreMap[genre.id] = genre.name
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<GenreDBResponse>, t: Throwable) {
+                // Handle failure
+                Log.e("Genre", "Failed to Get genres",t)
+            }
+
+        })
+
+    }
+
 
     /**
      * Retrieves a LiveData object containing a list of movies from a local JSON file.

@@ -50,7 +50,13 @@
                 android:layout_height="wrap_content"
                 android:text="1-12-1234"
                 android:textSize="12sp"/>
-
+            <TextView
+                android:id="@+id/genre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action Adventure"
+                android:textSize="12sp"/>
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
