@@ -1,4 +1,14 @@
 # MovieFinder
+
+A quick project I made to cover the basic Android Development project utilizing MVVM, and other best practices. I will update this later with couroutines to make it more readable
+
+##Screenshots
+<img width="390" alt="Screenshot 2024-01-02 at 5 01 15 PM" src="https://github.com/UmairKhalid98/MovieFinder/assets/52261465/f7f27315-210c-4e7a-a6e7-0f9a35062687">
+<img width="390" alt="Screenshot 2024-01-02 at 5 02 20 PM" src="https://github.com/UmairKhalid98/MovieFinder/assets/52261465/ba656794-b246-4eae-af38-0dc91df1eb64">
+
+
+
+
 ## Tested on
  - Tested using MacOS, with Pixel 5 emulators running 30 and 31
 ## Installation Instructions
@@ -54,20 +64,6 @@ I passed that function to the adapter to display the values on the screen.
 For displaying more than one page (ie more than 20 movies) I looped over the function that fetched the data so that it fetched the next page each time. I then added that to the existing list and passed it forward.
 I used gradle.properties to keep the api keys hidden. Although not the best approach, I think it was still better than hard coding it in. 
 
-### What I would do differently if I had more itme
-- I would probably start with unit tests, I really wanted to add them but I knew I didn't have enough time for that. 
-- Use jetpack compose because it makes view binding much easier.
-- Add a nav bar and a favorite section
-- Improve upon the UI with better fonts and themes
-- Use some sort keystore or cipher for hiding the api key
-
-### Commits- How I use Github
-- I make the first commit after I get a basic setup running, with project structure and a genral basic layout set up. In this case, getting a basic MVVM project running with dummy data.
-- Then each time I make progress and or I am ending my session, I would commit. In this instant, connecting to the API, adding a display screen were both progress
-- I use branches for new features or for collaboration
-- If I have a working version of the project, and i want to add a new feature (ie Navbar in this instance) i would create a bracnh
-
- Thank you for your consideration and taking the time
 
 
 
